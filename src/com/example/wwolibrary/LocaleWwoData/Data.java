@@ -8,11 +8,10 @@ import com.example.wwolibrary.params.LocaleWeatherParam;
 
 public class Data{
 
-
-	public CurrentCondition current_condition=null;
-	public NearestArea nearest_area=null;
-	public Weather weather[]=null;
-	public Request request;
+	private CurrentCondition current_condition=null;
+	private NearestArea nearest_area=null;
+	private Weather weather[]=null;
+	private Request request;
 	
 	public CurrentCondition getCurrent_condition() {
 		return current_condition;
@@ -203,8 +202,8 @@ public class Data{
 		String weatherUrl;
 		
 		public NearestArea(JSONArray arrayArea) throws Exception {
-			JSONObject areaObj=arrayArea.getJSONObject(0);
-			
+			JSONObject areaObj=arrayArea.optJSONObject(0);
+			if(areaObj!=null){
 			 JSONArray  array=areaObj.getJSONArray("areaName");
 			 JSONObject object=array.getJSONObject(0);
 			
@@ -227,6 +226,7 @@ public class Data{
 			object=array.getJSONObject(0);
 				
 			weatherUrl=object.getString("value");
+			}
 		}
 		
 		public String getAreaName() {

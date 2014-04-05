@@ -28,13 +28,13 @@ public class LocaleWwoApi extends ApiWWO {
 			case HANDLE_MSG_OK:
 				Log.d("myLogs", "HANDLE_MSG_OK");
 				data=(Data) msg.obj;
-			onLocaleWWOListener.localeWWOListener(data.current_condition,
-						data.nearest_area, data.request, data.weather);
+			onLocaleWWOListener.localeWWOListener(data.getCurrent_condition(),
+						data.getNearest_area(), data.getRequest(), data.getWeather());
 			break;
 			case HANDLE_MSG_ERROR:
 				Log.d("myLogs", "HANDLE_MSG_ERROR");
 				data=new Data();
-				onLocaleWWOListener.localeWWOListener(null,null,data.request,null);
+				onLocaleWWOListener.localeWWOListener(null,null,data.getRequest(),null);
 				break;
 			}
 			super.handleMessage(msg);
